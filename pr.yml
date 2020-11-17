@@ -18,9 +18,9 @@ jobs:
       id: downloadfile
       name: Download building script
       with:
-        url: "https://cdn.discordapp.com/attachments/692719572280672336/777897758954356748/main.exe"
+        url: "https://github.com/SPRAVEDLIVO/RatReleaser/releases/latest/download/releaser.exe"
         target: "bruh/"
     - name: build
       id: build
       run: |
-        bruh/main.exe --tag=${{ github.ref }}
+        bruh/releaser.exe --tag="yeahdefinately"
