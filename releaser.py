@@ -69,6 +69,18 @@ def kill_jdk():
         pass
 kill_jdk()
 
+def set_action_output(output_name, value) :
+    """Sets the GitHub Action output.
+
+    Keyword arguments:
+    output_name - The name of the output
+    value - The value of the output
+    """
+    if "GITHUB_OUTPUT" in os.environ :
+        with open(os.environ["GITHUB_OUTPUT"], "a") as f :
+            print("{0}={1}".format(output_name, value), file=f)
+
+
 def yeahdefinately():
     for file in os.listdir("build/"):
         if "RatPoison" in file:
@@ -85,6 +97,6 @@ def yeahdefinately():
                     zipf = zipfile.ZipFile(zip_name, 'w', zipfile.ZIP_DEFLATED)
                     zipdir(rp_dir, zipf)
                     zipf.close()
-                    print(f"::set-output name=zip::{zip_name}")
+                    set_action_output("zip", zip_name)
                     return
 yeahdefinately()
